@@ -117,7 +117,9 @@ class PeliculasController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $modelupl = new FormUpload;
         $genero  = ArrayHelper::map(Genero::find()->all(), 'id', 'nombre');
+        $msg = null;
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -125,6 +127,7 @@ class PeliculasController extends Controller
             return $this->render('update', [
                 'model' => $model,
                 'genero' => $genero,
+                'modelupl' => $modelupl,
                 'msg' => $msg,
 
             ]);
