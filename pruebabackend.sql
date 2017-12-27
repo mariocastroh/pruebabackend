@@ -5,7 +5,7 @@ CREATE TABLE genero
   CONSTRAINT genero_pkey PRIMARY KEY (id)
   )
   WITH ( OIDS=FALSE );
-  ALTER TABLE genero OWNER TO mario;
+  ALTER TABLE genero OWNER TO diana;
 
 
 CREATE TABLE peliculas
@@ -16,15 +16,15 @@ CREATE TABLE peliculas
   director 			character varying(30) NOT NULL,
   fecha_lanzamiento date DEFAULT now(),
   imagen 			  character varying(300) NOT NULL,
-  CONSTRAINT peliculas_pkey PRIMARY KEY (id)
-  CONSTRAINT "$1" FOREIGN KEY (id_ti)
-      REFERENCES tipo_identificacion (id) MATCH SIMPLE
-      ON UPDATE NO ACTION ON DELETE NO ACTION,
+  CONSTRAINT peliculas_pkey PRIMARY KEY (id),
+  CONSTRAINT "$1" FOREIGN KEY (id_genero)
+      REFERENCES genero (id) MATCH SIMPLE
+      ON UPDATE NO ACTION ON DELETE NO ACTION
   )
   WITH ( OIDS=FALSE );
-  ALTER TABLE peliculas OWNER TO mario;
+  ALTER TABLE peliculas OWNER TO diana;
 
-  INSERT INTO gebero(id, nombre) VALUES
+  INSERT INTO genero(id, nombre) VALUES
   (1, 'Ciencia Ficción'),
   (2, 'Terror'),
   (3, 'Comedia'),
